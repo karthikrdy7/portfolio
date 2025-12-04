@@ -102,7 +102,8 @@ nav {
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  /* main content + portrait column with flexible max width */
+  grid-template-columns: 1fr minmax(260px, 420px);
   gap: 36px;
   align-items: center;
   position: relative;
@@ -147,21 +148,22 @@ margin-right:12px
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 
 .portrait
 {
-  width:340px;
-  height:340px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  border:10px solid white;
-  position:relative;
+  /* responsive circular portrait */
+  width: clamp(180px, 28vw, 340px);
+  height: clamp(180px, 28vw, 340px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 10px solid white;
+  position: relative;
 }
 
 
@@ -171,6 +173,18 @@ margin-right:12px
   height:100%;
   object-fit:cover;
   display:block
+}
+
+/* Mid-size screens (tablets / small laptops) keep columns but reduce spacing */
+@media (max-width: 1199px) and (min-width: 769px) {
+  .hero-grid {
+    grid-template-columns: 1fr minmax(220px, 360px);
+    gap: 28px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
 }
 
 /* Section Styling */
